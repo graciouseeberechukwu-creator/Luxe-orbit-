@@ -762,7 +762,7 @@ export interface BusinessDetails {
 export const BUSINESS_DETAILS: BusinessDetails = {
   brandName: 'Luxe Échelon Orbit',
   tagline: 'Learn | Grow | Earn',
-  email: 'contact@luxeechelonorbit.com',
+  email: 'madebygracie287@gmail.com',
   whatsappSupportNumber: '2349138941163',
   whatsappDisplay: '+234 913 894 1163',
   bankName: 'Moniepoint MFB',

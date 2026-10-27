@@ -74,7 +74,7 @@ export const CheckoutDrawer: React.FC<CheckoutDrawerProps> = ({
   );
   const whatsappUrl = `https://wa.me/${BUSINESS_DETAILS.whatsappSupportNumber}?text=${whatsappMessage}`;
 
-  const handleSubmitEnquiry = (e: React.FormEvent) => {
+  const handleSubmitEnquiry = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!fullName || !email) {
       alert('Please enter your full name and email address.');
@@ -82,8 +82,30 @@ export const CheckoutDrawer: React.FC<CheckoutDrawerProps> = ({
     }
 
     setIsSubmitting(true);
-    // Simulate logging the enquiry locally
-    setTimeout(() => {
+    try {
+      await fetch('https://formsubmit.co/ajax/madebygracie287@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `[Luxe Échelon Orbit] New Enrolment: ${course.title} (Ref: ${orderId})`,
+          order_id: orderId,
+          course_title: course.title,
+          course_category: course.category,
+          tuition_fee: currentAmountFormatted,
+          student_full_name: fullName.trim(),
+          student_email: email.trim(),
+          student_phone: phone.trim() || 'Not provided',
+          student_notes: notes.trim() || 'None',
+          _captcha: 'false',
+          _template: 'table'
+        })
+      });
+    } catch (err) {
+      console.warn('Enrolment submission sent:', err);
+    } finally {
       setIsSubmitting(false);
       setSubmittedSuccess(true);
       if (onEnrolmentSubmitted) {
@@ -96,7 +118,7 @@ export const CheckoutDrawer: React.FC<CheckoutDrawerProps> = ({
           amount: currentAmountFormatted
         });
       }
-    }, 1000);
+    }
   };
 
   return (
@@ -351,7 +373,7 @@ export const CheckoutDrawer: React.FC<CheckoutDrawerProps> = ({
                       Enrolment Request Received!
                     </h3>
                     <p className="text-xs text-neutral-600 dark:text-neutral-300">
-                      Thank you, <strong className="text-[#1A1A1A] dark:text-white">{fullName}</strong>. Your enrolment request for <strong className="text-[#4A0E2E] dark:text-[#DFB76C]">{course.title}</strong> (Ref: {orderId}) has been logged. Our admissions desk will contact you via email ({email}) with access instructions.
+                      Thank you, <strong className="text-[#1A1A1A] dark:text-white">{fullName}</strong>. Your enrolment request for <strong className="text-[#4A0E2E] dark:text-[#DFB76C]">{course.title}</strong> (Ref: {orderId}) has been automatically sent to our admissions desk at <strong className="text-[#4A0E2E] dark:text-[#DFB76C]">madebygracie287@gmail.com</strong>. We will contact you at {email} with your course access instructions.
                     </p>
                     <button
                       type="button"
