@@ -763,8 +763,8 @@ export const BUSINESS_DETAILS: BusinessDetails = {
   brandName: 'Luxe Échelon Orbit',
   tagline: 'Learn | Grow | Earn',
   email: 'contact@luxeechelonorbit.com',
-  whatsappSupportNumber: '2348039281744',
-  whatsappDisplay: '+234 803 928 1744',
+  whatsappSupportNumber: '2349138941163',
+  whatsappDisplay: '+234 913 894 1163',
   bankName: 'Moniepoint MFB',
   accountName: 'Eberechukwu Gracious Ezinne',
   accountNumber: '8086382378'
