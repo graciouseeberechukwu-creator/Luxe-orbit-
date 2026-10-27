@@ -1,0 +1,6 @@
+{
+  "name": "Luxe Échelon Orbit",
+  "description": "Luxe Échelon Orbit is an online digital courses and skills marketplace. Learn real digital skills, explore new opportunities, and build income-generating capabilities.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
