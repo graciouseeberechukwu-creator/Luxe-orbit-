@@ -765,9 +765,9 @@ export const BUSINESS_DETAILS: BusinessDetails = {
   email: 'contact@luxeechelonorbit.com',
   whatsappSupportNumber: '2348039281744',
   whatsappDisplay: '+234 803 928 1744',
-  bankName: 'Direct Bank Settlement (Configurable)',
-  accountName: 'Luxe Échelon Orbit',
-  accountNumber: '6298410388'
+  bankName: 'Moniepoint MFB',
+  accountName: 'Eberechukwu Gracious Ezinne',
+  accountNumber: '8086382378'
 };
 
 export const WHAT_TO_EXPECT = [

@@ -53,6 +53,9 @@ export const Footer: React.FC<FooterProps> = () => {
                 <WhatsAppIcon className="w-3.5 h-3.5 text-[#25D366]" />
                 <span className="font-mono">{BUSINESS_DETAILS.whatsappDisplay}</span>
               </div>
+              <div className="pt-1 border-t border-white/10 text-[11px] text-neutral-300">
+                <span className="text-[#DFB76C] font-semibold">Direct Settlement:</span> {BUSINESS_DETAILS.bankName} &bull; <span className="font-mono font-bold text-white">{BUSINESS_DETAILS.accountNumber}</span> &bull; {BUSINESS_DETAILS.accountName}
+              </div>
             </div>
           </div>
 

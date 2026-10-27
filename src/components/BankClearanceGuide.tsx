@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { COURSES, BUSINESS_DETAILS } from '../data/courses.ts';
-import { BookOpen, CheckCircle2, ShieldCheck, Tag, Info, ArrowRight } from 'lucide-react';
+import { BookOpen, CheckCircle2, ShieldCheck, Tag, Info, ArrowRight, Copy, Check } from 'lucide-react';
 
 interface BankClearanceGuideProps {
   onOpenContact: () => void;
 }
 
 export const BankClearanceGuide: React.FC<BankClearanceGuideProps> = ({ onOpenContact }) => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyAccount = () => {
+    navigator.clipboard.writeText(BUSINESS_DETAILS.accountNumber);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
   return (
     <section id="enrolment-guide" className="py-16 md:py-24 bg-white dark:bg-[#161b22] border-b border-[#F0EAE1] dark:border-[#30363d] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -121,7 +128,48 @@ export const BankClearanceGuide: React.FC<BankClearanceGuideProps> = ({ onOpenCo
 
         </div>
 
-        {/* Integration Disclaimer Note */}
+        {/* Official Moniepoint Settlement Account Card */}
+        <div className="bg-[#2B0018] dark:bg-[#1a0010] rounded-xl p-6 sm:p-8 text-white border border-[#4A0E2E] dark:border-[#30363d] mb-10 shadow-md">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            
+            <div className="space-y-1.5">
+              <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-white/10 text-[#DFB76C] text-[11px] font-mono font-semibold">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#25D366]" />
+                <span>Designated Direct Settlement Account</span>
+              </div>
+              <h3 className="font-serif text-2xl font-bold">
+                {BUSINESS_DETAILS.accountName}
+              </h3>
+              <p className="text-xs text-neutral-300">
+                Bank Partner: <strong className="text-white">{BUSINESS_DETAILS.bankName}</strong> &bull; Direct Transfer Clearing
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+              <div className="px-5 py-3 rounded-lg bg-black/40 border border-white/20 text-center sm:text-left">
+                <div className="text-[10px] uppercase font-mono text-[#DFB76C] font-semibold">
+                  Account Number ({BUSINESS_DETAILS.bankName})
+                </div>
+                <div className="font-mono text-xl sm:text-2xl font-bold tracking-wider text-white select-all">
+                  {BUSINESS_DETAILS.accountNumber}
+                </div>
+              </div>
+
+              <button
+                onClick={handleCopyAccount}
+                className={`h-12 px-6 rounded-md text-xs font-bold transition-all flex items-center justify-center gap-2 cursor-pointer shadow-sm ${
+                  copied
+                    ? 'bg-[#25D366] text-white'
+                    : 'bg-[#C5A059] hover:bg-[#b08d46] text-[#2B0018]'
+                }`}
+              >
+                {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                <span>{copied ? 'Copied to Clipboard!' : 'Copy Account'}</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
         <div className="p-4 rounded-lg bg-[#F8F9FA] dark:bg-[#0d1117] border border-[#E2E8F0] dark:border-[#30363d] text-xs text-[#524348] dark:text-neutral-300 flex items-start gap-3">
           <Info className="w-5 h-5 text-[#C5A059] shrink-0 mt-0.5" />
           <div className="space-y-1">

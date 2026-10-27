@@ -229,31 +229,95 @@ export const CheckoutDrawer: React.FC<CheckoutDrawerProps> = ({
                   </div>
                 </div>
 
-                {/* Integration Notice & Settlement Guidance */}
+                {/* Moniepoint Direct Settlement Account Tile */}
+                <div className="p-4 rounded-lg bg-[#F8F9FA] dark:bg-[#21262d] border border-dashed border-[#C5A059] space-y-3">
+                  <div className="flex items-center justify-between pb-2 border-b border-[#F0EAE1] dark:border-[#30363d]">
+                    <div>
+                      <span className="text-xs font-bold text-[#1A1A1A] dark:text-white block">
+                        {BUSINESS_DETAILS.bankName}
+                      </span>
+                      <span className="text-[10px] text-[#718096] dark:text-neutral-400">
+                        Official Direct Transfer Account
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
+                      Active
+                    </span>
+                  </div>
+
+                  {/* Account Name */}
+                  <div>
+                    <label className="text-[10px] uppercase font-mono tracking-wider text-[#718096] dark:text-neutral-400 block mb-0.5">
+                      Account Name
+                    </label>
+                    <div className="text-xs font-bold text-[#1A1A1A] dark:text-white select-all">
+                      {BUSINESS_DETAILS.accountName}
+                    </div>
+                  </div>
+
+                  {/* Account Number with Interactive Copy */}
+                  <div className="p-3 bg-white dark:bg-[#161b22] rounded-md border border-[#E2E8F0] dark:border-[#30363d] flex items-center justify-between">
+                    <div>
+                      <span className="text-[10px] uppercase font-mono tracking-wider text-[#718096] dark:text-neutral-400 block">
+                        Account Number ({BUSINESS_DETAILS.bankName})
+                      </span>
+                      <span className="font-mono text-base font-bold text-[#4A0E2E] dark:text-[#DFB76C] tracking-wider select-all">
+                        {BUSINESS_DETAILS.accountNumber}
+                      </span>
+                    </div>
+
+                    <button
+                      onClick={() => copyToClipboard(BUSINESS_DETAILS.accountNumber, 'account')}
+                      className={`h-8 px-3 rounded-md text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+                        copiedAccount
+                          ? 'bg-[#25D366] text-white'
+                          : 'bg-[#4A0E2E] dark:bg-[#721847] text-white hover:bg-[#380C24]'
+                      }`}
+                    >
+                      {copiedAccount ? (
+                        <>
+                          <Check className="w-3.5 h-3.5" />
+                          <span>Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3.5 h-3.5" />
+                          <span>Copy</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Order Reference Narration */}
+                  <div className="flex justify-between items-center text-xs pt-1">
+                    <span className="text-[#718096] dark:text-neutral-400">Payment Narration / Ref:</span>
+                    <button
+                      onClick={() => copyToClipboard(orderId, 'ref')}
+                      className="font-mono font-bold text-[#4A0E2E] dark:text-[#DFB76C] hover:underline flex items-center gap-1"
+                    >
+                      <span>{orderId}</span>
+                      {copiedReference ? <Check className="w-3 h-3 text-emerald-500" /> : <Copy className="w-3 h-3" />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Enrolment Guidance */}
                 <div className="p-3.5 rounded-lg bg-[#FCF9F8] dark:bg-[#0d1117] border border-[#F0EAE1] dark:border-[#30363d] space-y-2 text-xs text-[#524348] dark:text-neutral-300">
                   <div className="flex items-center gap-1.5 font-bold text-[#1A1A1A] dark:text-white">
                     <Info className="w-4 h-4 text-[#C5A059]" />
                     <span>How to Complete Your Enrolment:</span>
                   </div>
-                  <p className="leading-relaxed text-[12px]">
-                    To enrol in <strong className="text-[#1A1A1A] dark:text-white">{course.title}</strong> at the confirmed price of <strong className="text-[#4A0E2E] dark:text-[#DFB76C]">{currentAmountFormatted}</strong>:
-                  </p>
-                  <ol className="list-decimal pl-4 space-y-1.5 text-[11px] text-[#718096] dark:text-neutral-400">
+                  <ol className="list-decimal pl-4 space-y-1 text-[11px] text-[#718096] dark:text-neutral-400">
                     <li>
-                      Click the WhatsApp button below to connect with our admissions team with prefilled course details and order reference <strong className="font-mono text-[#1A1A1A] dark:text-white">{orderId}</strong>.
+                      Transfer exact tuition (<strong className="text-[#4A0E2E] dark:text-[#DFB76C]">{currentAmountFormatted}</strong>) to the Moniepoint account above.
                     </li>
                     <li>
-                      Or click <strong>"Submit Enrolment Form"</strong> to send your student details directly on-site.
+                      Use order reference <strong className="font-mono text-[#1A1A1A] dark:text-white">{orderId}</strong> in your transfer remark.
+                    </li>
+                    <li>
+                      Click the WhatsApp button below or use Tab 2 to send your confirmation and receive your course access.
                     </li>
                   </ol>
-                </div>
-
-                {/* Technical Transparency Note */}
-                <div className="p-3 rounded-md bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 text-[11px] text-amber-900 dark:text-amber-200 flex items-start gap-2">
-                  <ShieldAlert className="w-4 h-4 shrink-0 mt-0.5 text-amber-600 dark:text-amber-400" />
-                  <span>
-                    Payment Gateway Integration Note: Automatic card processing requires connecting an authorized external merchant payment service (such as Paystack, Flutterwave, or bank API). In this environment, enrolments are coordinated directly via our admissions desk.
-                  </span>
                 </div>
 
                 {/* CTAs */}
