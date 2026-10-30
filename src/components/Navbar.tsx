@@ -114,22 +114,22 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Right Action Controls */}
           <div className="hidden sm:flex items-center space-x-3">
             
-            {/* Light / Dark Mode Toggle Button */}
+            {/* Bright / Dark Mode Toggle Button */}
             <button
               onClick={onToggleTheme}
-              aria-label={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} mode`}
-              title={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} mode`}
-              className="p-2 rounded-md border border-[#E2E8F0] dark:border-[#30363d] bg-white dark:bg-[#21262d] text-[#1A1A1A] dark:text-[#DFB76C] hover:bg-neutral-50 dark:hover:bg-[#30363d] transition-colors cursor-pointer flex items-center gap-1.5 text-xs font-medium"
+              aria-label={`Switch to ${theme === 'light' ? 'Dark' : 'Bright'} mode`}
+              title={`Switch to ${theme === 'light' ? 'Dark' : 'Bright'} mode`}
+              className="h-10 px-3 rounded-md border border-[#E2E8F0] dark:border-[#30363d] bg-white dark:bg-[#21262d] text-[#1A1A1A] dark:text-[#DFB76C] hover:bg-neutral-50 dark:hover:bg-[#30363d] transition-colors cursor-pointer flex items-center gap-1.5 text-xs font-semibold shadow-2xs"
             >
               {theme === 'light' ? (
                 <>
                   <Moon className="w-4 h-4 text-[#4A0E2E]" />
-                  <span className="text-[11px] text-[#718096]">Dark</span>
+                  <span className="text-[11px] text-[#4A0E2E]">Dark Mode</span>
                 </>
               ) : (
                 <>
                   <Sun className="w-4 h-4 text-amber-400" />
-                  <span className="text-[11px] text-neutral-300">Light</span>
+                  <span className="text-[11px] text-amber-300">Bright Mode</span>
                 </>
               )}
             </button>
@@ -146,13 +146,14 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Mobile Right Controls */}
           <div className="flex sm:hidden items-center space-x-2">
-            {/* Light/Dark Toggle for Mobile */}
+            {/* Bright/Dark Toggle for Mobile */}
             <button
               onClick={onToggleTheme}
-              aria-label={`Switch to ${theme === 'light' ? 'Dark' : 'Light'} mode`}
+              aria-label={`Switch to ${theme === 'light' ? 'Dark' : 'Bright'} mode`}
+              title={`Switch to ${theme === 'light' ? 'Dark' : 'Bright'} mode`}
               className="p-2 rounded-md border border-[#E2E8F0] dark:border-[#30363d] bg-white dark:bg-[#21262d] text-[#1A1A1A] dark:text-[#DFB76C]"
             >
-              {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4 text-amber-400" />}
+              {theme === 'light' ? <Moon className="w-4 h-4 text-[#4A0E2E]" /> : <Sun className="w-4 h-4 text-amber-400" />}
             </button>
 
             {/* Menu Trigger */}
@@ -212,17 +213,17 @@ export const Navbar: React.FC<NavbarProps> = ({
                 </span>
                 <button
                   onClick={onToggleTheme}
-                  className="px-3 py-1.5 rounded-md border border-[#E2E8F0] dark:border-[#30363d] text-xs font-semibold flex items-center gap-1 text-[#1A1A1A] dark:text-white"
+                  className="px-3 py-1.5 rounded-md border border-[#E2E8F0] dark:border-[#30363d] text-xs font-semibold flex items-center gap-1.5 text-[#1A1A1A] dark:text-white bg-neutral-50 dark:bg-[#21262d]"
                 >
                   {theme === 'light' ? (
                     <>
-                      <Moon className="w-3.5 h-3.5" />
+                      <Moon className="w-3.5 h-3.5 text-[#4A0E2E]" />
                       <span>Switch to Dark Mode</span>
                     </>
                   ) : (
                     <>
                       <Sun className="w-3.5 h-3.5 text-amber-400" />
-                      <span>Switch to Light Mode</span>
+                      <span>Switch to Bright Mode</span>
                     </>
                   )}
                 </button>
